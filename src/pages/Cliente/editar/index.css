@@ -1,0 +1,46 @@
+.cliente-update input{
+    background: aliceblue;
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 5px;
+    margin-top: 5px;
+    margin-bottom: 20px;
+    font-size: 16px;
+    color: dimgray;
+}
+ 
+.cliente-update label{
+    font-size: 20px;
+    color: black;
+    font-weight: bold;
+}
+
+.form-cliente-update {
+    background-color: yellow;
+    max-width: 500px;
+    width: 100%;
+    border: 2px solid #292C2E;
+    border-radius: 5px;
+    position:absolute;
+    margin: 25px 25px 25px 36%;
+}
+
+.form-cliente-update div {
+    position: relative;
+    margin: 5% 20% 5% 34%;
+}
+
+.form-cliente-update legend {
+    position:relative;
+    margin: 5% 20% 1% 38%;
+}
+
+.form-cliente-update .submit-button {
+    position:relative;
+    margin: 5% 20% 3% 42%;
+}
+
+.form-cliente-update .go-back {
+    position:relative;
+    margin: 5% 20% 3% 14%;
+}
