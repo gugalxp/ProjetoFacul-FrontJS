@@ -31,6 +31,7 @@ export default class Main extends Component {
                 <Link to={`produtos`}> <button type="button" class="btn btn-secondary btn-lg">Produtos</button> </Link> &nbsp;
                 <Link to={`clientes`}> <button type="button" class="btn btn-secondary btn-lg">Clientes</button> </Link> &nbsp;
                 </div>
+                <center><h1>Clientes</h1> </center>
                 <Link to={`/criarProduto`}> <button type="button" class="btn btn-success">Novo</button> </Link>
                 <br /><br />
  

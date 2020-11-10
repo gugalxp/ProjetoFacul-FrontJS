@@ -36,8 +36,8 @@ export default class Main extends Component {
                 
                 <div className="table-display">
                     <br />
-                    <Link to={`/criarCliente`}> <button type="button" class="btn btn-success">Novo</button> </Link>
                     <center><h1>Clientes</h1> </center>
+                    <Link to={`/criarCliente`}> <button type="button" class="btn btn-success">Novo</button> </Link>
                     <br /><br />
  
                     <table class="table table-hover">
