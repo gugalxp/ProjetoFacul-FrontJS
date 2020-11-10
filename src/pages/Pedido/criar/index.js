@@ -124,7 +124,7 @@ class CriarPedido extends Component {
     };
  
     handleSubmit = event => {
-        fetch(" ${process.env.REACT_APP_API_URL}sistema/pedidos",
+        fetch(`${process.env.REACT_APP_API_URL}sistema/pedidos`,
          {
             method: "post",
             body: JSON.stringify(this.state.pedido),
