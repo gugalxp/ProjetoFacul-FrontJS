@@ -29,7 +29,7 @@ class DeletarCliente extends Component {
     componentDidMount() {
         const { id } = this.props.match.params;
  
-        fetch(`${process.env.REACT_APP_API_URL}sistema/clientes/${id}`)
+        fetch(`${process.env.REACT_APP_API_URL}/sistema/clientes/${id}`)
             .then(data => {
                 data.json().then(data => {
                     if (data.error) {
@@ -71,7 +71,7 @@ class DeletarCliente extends Component {
     handleClick = event => {
         const { id } = this.props.match.params;
  
-        fetch(`${process.env.REACT_APP_API_URL}sistema/clientes/${id}`, {
+        fetch(`${process.env.REACT_APP_API_URL}/sistema/clientes/${id}`, {
             method: "delete"
         })
             .then(data => {
