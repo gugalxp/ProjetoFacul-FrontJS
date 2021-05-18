@@ -29,7 +29,7 @@ class DeletarUsuario extends Component {
     componentDidMount() {
         const { id } = this.props.match.params;
  
-        fetch(`http://localhost:3003/sistema/usuarios/${id}`)
+        fetch(`${process.env.REACT_APP_API_URL}/sistema/usuarios/${id}`)
             .then(data => {
                 data.json().then(data => {
                     if (data.error) {
@@ -71,7 +71,7 @@ class DeletarUsuario extends Component {
     handleClick = event => {
         const { id } = this.props.match.params;
  
-        fetch(`http://localhost:3003/sistema/usuarios/${id}`, {
+        fetch(`${process.env.REACT_APP_API_URL}/sistema/usuarios/${id}`, {
             method: "delete"
         })
             .then(data => {

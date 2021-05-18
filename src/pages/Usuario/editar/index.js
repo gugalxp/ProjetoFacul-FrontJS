@@ -9,8 +9,9 @@ class EditarUsuario extends Component {
         this.state = {
             usuario: {
                 nome: "",
-                salario: "",
-                dataNascimento: ""
+                endereço: "",
+                email: "",
+                telefone: ""
             },
             erro: null,
             redirect: false
@@ -32,7 +33,7 @@ class EditarUsuario extends Component {
     componentDidMount() {
         const { id } = this.props.match.params;
  
-        fetch(`http://localhost:3003/sistema/usuarios/${id}`)
+        fetch(`${process.env.REACT_APP_API_URL}/sistema/usuarios/${id}`)
             .then(data => {
                 data.json().then(data => {
                     if (data.error) {
@@ -71,30 +72,32 @@ class EditarUsuario extends Component {
                             />
                         </div>
                         <div className="usuario-update">
-                            <label htmlFor="salario">Salário </label>
+                            <label htmlFor="endereço">endereço</label>
                             <br />
                             <input
                                 type="text"
-                                id="salario"
-                                name="salario"
-                                placeholder="Matrícula"
-                                min="1"
-                                max="99999"
+                                id="endereço"
+                                name="endereço"
+                                placeholder="endereço"
+                                min="3"
+                                max="100"
                                 required
-                                value={this.state.usuario.salario}
+                                value={this.state.usuario.endereço}
                                 onChange={this.handleInputChange}
                             />
                         </div>
                         <div className="usuario-update">
-                            <label htmlFor="dataNascimento">Data de Nascimento </label>
+                            <label htmlFor="email">email</label>
                             <br />
                             <input
                                 type="text"
-                                id="dataNascimento"
-                                name="dataNascimento"
-                                placeholder="dataNascimento"
+                                id="email"
+                                name="email"
+                                placeholder="email"
+                                min="3"
+                                max="100"
                                 required
-                                value={this.state.usuario.dataNascimento}
+                                value={this.state.usuario.email}
                                 onChange={this.handleInputChange}
                             />
                         </div>
@@ -123,7 +126,7 @@ class EditarUsuario extends Component {
     handleSubmit = event => {
         const { id } = this.state.usuario;
  
-        fetch(`http://localhost:3003/sistema/usuarios/${id}`, {
+        fetch(`${process.env.REACT_APP_API_URL}/sistema/usuarios/${id}`, {
             method: "put",
             body: JSON.stringify(this.state.usuario),
             headers: {

@@ -8,15 +8,15 @@ export default class Main extends Component {
         super(props);
  
         this.state = {
-            usuario: [],
+            usuarios: [],
             erro: null
         };
     }
  
     componentDidMount() {
-        fetch(`http://localhost:3003/sistema/usuarios`)
-            .then(usuario =>
-                usuario.json().then(usuario => this.setState({ usuario }))
+        fetch(`${process.env.REACT_APP_API_URL}/sistema/usuarios`)
+            .then(usuarios =>
+                usuarios.json().then(usuarios => this.setState({ usuarios }))
             )
             .catch(erro => this.setState({ erro }));
     }
@@ -26,6 +26,13 @@ export default class Main extends Component {
  
         return (
             <div className="usuario-list">
+
+                <div class="buttons">
+                <Link to={`pedidos`}> <button type="button" class="btn btn-secondary btn-lg">Pedidos</button> </Link> &nbsp;
+                <Link to={`produtos`}> <button type="button" class="btn btn-secondary btn-lg">Produtos</button> </Link> &nbsp;
+                <Link to={`usuarios`}> <button type="button" class="btn btn-secondary btn-lg">Clientes</button> </Link> &nbsp;
+                </div>
+
                 <Link to={`/criarUsuario`}> <button type="button" class="btn btn-success">Novo</button> </Link>
                 <br /><br />
  
@@ -34,23 +41,23 @@ export default class Main extends Component {
                         <tr>
                             <th scope="col">#</th>
                             <th scope="col">Nome</th>
-                            <th scope="col">Salário</th>
-                            <th scope="col">Nascimento</th>
-                            <th scope="col">Ativo</th>
+                            <th scope="col">Endereço</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Telefone</th>
                             <th scope="col">Ações</th>
                         </tr>
                     </thead>
                     <tbody>
-                        {usuario.map((usuario, index) => (
+                        {usuario.map((usuarios, index) => (
                             <tr>
                                 <th scope="row">{usuario.id}</th>
-                                <td>{usuario.nome}</td>
-                                <td>{usuario.salario.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</td>
-                                <td>{new Date(usuario.dataNascimento).toLocaleDateString('pt-BR', { year: 'numeric', month: '2-digit', day: '2-digit' })}</td>
-                                <td>{usuario.ativo ? "Sim" : "Não"}</td>
-                                <td> <Link to={`/usuarios/${usuario.id}`}> <button type="button" class="btn btn-primary">Detalhes</button> </Link> </td>
-                                <td> <Link to={`/editarUsuario/${usuario.id}`}> <button type="button" class="btn btn-warning">Atualizar</button> </Link></td>
-                                <td> <Link to={`/deletarUsuario/${usuario.id}`}> <button type="button" class="btn btn-danger">Excluir</button> </Link></td>
+                                <td>{usuarios.nome}</td>
+                                <td>{usuarios.endereço}</td>
+                                <td>{usuarios.email}</td>
+                                <td>{usuarios.telefone}</td>
+                                <td> <Link to={`/usuarios/${usuarios.id}`}> <button type="button" class="btn btn-primary">Detalhes</button> </Link> </td>
+                                <td> <Link to={`/editarUsuario/${usuarios.id}`}> <button type="button" class="btn btn-warning">Atualizar</button> </Link></td>
+                                <td> <Link to={`/deletarUsuario/${usuarios.id}`}> <button type="button" class="btn btn-danger">Excluir</button> </Link></td>
                             </tr>
                         ))}
                     </tbody>

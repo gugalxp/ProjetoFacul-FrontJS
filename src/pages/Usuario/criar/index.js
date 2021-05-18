@@ -9,9 +9,9 @@ class CriarUsuario extends Component {
         this.state = {
             usuario: {
                 nome: "",
-                salario: "",
-                dataNascimento: "",
-                ativo: "true"
+                endereço: "",
+                email: "",
+                telefone: ""
             },
             erro: null,
             redirect: false
@@ -38,7 +38,8 @@ class CriarUsuario extends Component {
             return (
                 <form onSubmit={this.handleSubmit}>
                     <fieldset>
-                        <legend>Criar Usuário</legend>
+                        <legend>Formulário Usuário</legend>
+                        
                         <div className="usuario-insert">
                             <label htmlFor="nome">Nome </label>
                             <br />
@@ -54,60 +55,50 @@ class CriarUsuario extends Component {
                                 onChange={this.handleInputChange}
                             />
                         </div>
+                        
                         <div className="usuario-insert">
-                            <label htmlFor="salario">Salário </label>
+                            <label htmlFor="endereço">endereço</label>
                             <br />
                             <input
                                 type="text"
-                                id="salario"
-                                name="salario"
-                                placeholder="Salário"
+                                id="endereço"
+                                name="dendereço"
+                                placeholder="endereço"
                                 required
-                                value={this.state.usuario.salario}
+                                value={this.state.usuario.endereço}
                                 onChange={this.handleInputChange}
                             />
                         </div>
+                        
                         <div className="usuario-insert">
-                            <label htmlFor="dataNascimento">Data de Nascimento </label>
+                            <label htmlFor="email">email</label>
                             <br />
                             <input
-                                type="date"
-                                id="dataNascimento"
-                                name="dataNascimento"
-                                placeholder="Data de Nascimento"
+                                type="text"
+                                id="email"
+                                name="email"
+                                placeholder="email"
                                 required
-                                value={this.state.usuario.dataNascimento}
+                                value={this.state.usuario.email}
+                                onChange={this.handleInputChange}
+                            />
+                        </div>
+                        
+                        <div className="usuario-insert">
+                            <label htmlFor="telefone">telefone</label>
+                            <br />
+                            <input
+                                type="text"
+                                id="telefone"
+                                name="telefone"
+                                placeholder="telefone"
+                                required
+                                value={this.state.usuario.telefone}
                                 onChange={this.handleInputChange}
                             />
                         </div>
  
-                        <div className="usuario-insert">
-                            <label>
-                                <input
-                                    type="radio"
-                                    name="ativo"
-                                    value="true"
-                                    checked={this.state.usuario.ativo === "true"}
-                                    onChange={this.handleInputChange}
-                                />
-                                Ativo
-                        </label>
-                            <label>
-                                <input
-                                    type="radio"
-                                    value="false"
-                                    name="ativo"
-                                    checked={this.state.usuario.ativo === "false"}
-                                    onChange={this.handleInputChange}
-                                />
-                                Inativo
-                        </label>
-                        </div>
- 
- 
-                        <button type="submit" className="btn btn-primary">
-                            Cadastrar
-                    </button>
+                        <button type="submit" className="btn btn-primary">Cadastrar</button>
                     </fieldset>
                 </form>
             );
@@ -126,7 +117,7 @@ class CriarUsuario extends Component {
     };
  
     handleSubmit = event => {
-        fetch("http://localhost:3003/sistema/usuarios", {
+        fetch('${process.env.REACT_APP_API_URL}/sistema/usuarios', {
             method: "post",
             body: JSON.stringify(this.state.usuario),
             headers: {

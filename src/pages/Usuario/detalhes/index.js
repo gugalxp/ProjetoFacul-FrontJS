@@ -10,7 +10,7 @@ export default class Usuario extends Component {
     componentDidMount() {
         const { id } = this.props.match.params;
  
-        fetch(`http://localhost:3003/sistema/usuarios/${id}`)
+        fetch(`${process.env.REACT_APP_API_URL}/sistema/usuarios/${id}`)
             .then(usuario =>
                 usuario.json().then(usuario => this.setState({ usuario }))
             )
@@ -20,18 +20,18 @@ export default class Usuario extends Component {
     render() {
         const { usuario, index } = this.state;
  
-        if (usuario.ativo) {
+        /*if (usuario.ativo) {
             usuario.ativo = "Usuário Ativo";
         } else {
             usuario.ativo = "Usuário Inativo";
-        }
+        }*/
  
         return (
             <div className="usuario-info">
                 <h1> {usuario.nome} </h1>
-                <h1> {usuario.ativo} </h1>
-                <h1> {usuario.salario} </h1>
-                <h1> {usuario.dataNascimento} </h1>
+                <h1> {usuario.endereço} </h1>
+                <h1> {usuario.email} </h1>
+                <h1> {usuario.telefone} </h1>
                 <br />
                 <Link to={`/usuarios`}> Voltar </Link> <br />
                 <Link to={`/editarUsuario/${usuario.id}`}> Editar </Link> <br />
